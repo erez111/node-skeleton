@@ -1,0 +1,15 @@
+version: "3.6"
+services:
+  example-project:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_NODEJS_VER: 14.5.0
+    image: example-project
+    container_name: example-project
+    ports:
+      - "3100:3100"
+    environment:
+      NODE_ENV: development
+      PORT: 3100
