@@ -1,6 +1,5 @@
 .git
-/dist
 /build
-/data
+/dist
 tests/
 .npmrc

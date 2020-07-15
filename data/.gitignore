@@ -1,7 +1,6 @@
 node_modules/
 .idea/
 /build
-/data
 .DS_Store
 /npm-debug.log*
 .npmrc

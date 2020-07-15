@@ -1,6 +1,7 @@
 package-lock.json
 dist
 .git
+.npmrc
 .gitignore
 .idea
 .cache
