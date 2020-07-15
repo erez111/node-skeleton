@@ -1,5 +1,5 @@
 {
-  "name": "node-skeleton",
+  "name": "@erez111/node-skeleton",
   "description": "NodeJS skeleton project. Contains basic packages and configuration for our ideal initial node skeleton. Just easily run node-skeleton cli",
   "version": "0.1.0",
   "main": "build/cli.js",
@@ -31,5 +31,24 @@
   "preferGlobal": true,
   "bin": {
     "node-skeleton": "build/cli.js"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erez111/node-skeleton.git"
+  },
+  "keywords": [
+    "node-skeleton",
+    "node",
+    "project",
+    "typescript",
+    "project",
+    "swagger",
+    "project",
+    "openapi",
+    "project"
+  ],
+  "bugs": {
+    "url": "https://github.com/erez111/node-skeleton/issues"
+  },
+  "homepage": "https://github.com/erez111/node-skeleton#readme"
 }
