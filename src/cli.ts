@@ -25,20 +25,30 @@ if (!module.parent) {
 }
 
 function initializeCommands(): void {
+  const cliRunnableFileName: string = 'cli.js';
+  const cliCommandName: string = 'node-skeleton';
+
+  // @ts-ignore
   // eslint-disable-next-line no-unused-expressions
   yargs
-    .usage('Usage: $0 <command> [options]')
-    // .usage(`Usage: ${packageName} <command> [options]`)
+    .usage(`Usage: ${cliCommandName} <command> [options]`)
+    // .usage('Usage: $0 <command> [options]')
     .demandOption(['features'])
     .demand(1)
     .command('generate', 'Generates node skeleton project in current folder', {
       features: featuresArguments,
     }, generateProject as any)
     .option('features', featuresArguments)
-    .example('$0 generate --features all', 'Generates full node skeleton project for you')
+    .example(`${cliCommandName} generate --features all`, 'Generates full node skeleton project for you') // $0
     .help('help')
     .alias('help', 'h')
     .epilog(`Package license ${pacakgeLicense}`)
+    .parse('', (_err: any, _argv: any, output: any) => {
+      if (output) {
+        const result: string = output.replace(cliRunnableFileName, cliCommandName);
+        console.log(result);
+      }
+    })
     .argv;
 }
 
