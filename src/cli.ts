@@ -49,15 +49,18 @@ async function generateProject(): Promise<void> {
     return;
   }
 
+  const generatedPackageName: string = 'my-node-project';
   try {
     switch (features) {
       case 'all':
         console.log('Project is generating...');
-        HandlesFeatureAll('build/data/', `${packageName}-generated`);
+        await HandlesFeatureAll('build/data/', generatedPackageName);
+        console.log(`Congratulations!!! You've your new node-skeleton project at "${generatedPackageName}" folder`);
         break;
       case 'basic':
         console.log('Project is generating...');
-        HandlesFeatureBasic('build/data/', `${packageName}-generated`);
+        await HandlesFeatureBasic('build/data/', generatedPackageName);
+        console.log(`Congratulations!!! You've your new node-skeleton project at "${generatedPackageName}" folder`);
         break;
       default:
         console.log(`Please enter a valid --features value (${featuresList.join(' or ')})`);
@@ -123,8 +126,8 @@ async function copyFilesandFolders(fromList: string[], to: string, isFolder: boo
         ? customToWithoutSep : customToWithoutSep
         + path.sep + fromList[i].substr(fromList[i].lastIndexOf(path.sep) + 1);
 
-      console.log(`from ${fromList[i]}`);
-      console.log(`to ${customTo}`);
+      // console.log(`from ${fromList[i]}`);
+      // console.log(`to ${customTo}`);
 
       // eslint-disable-next-line no-await-in-loop
       await fse.copy(fromList[i], customTo);
