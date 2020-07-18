@@ -74,6 +74,7 @@
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
   },
   "exclude": [
-    "data"
+    "data",
+    "build"
   ]
 }
