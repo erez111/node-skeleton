@@ -25,7 +25,7 @@ if (!module.parent) {
 }
 
 function initializeCommands(): void {
-  const cliRunnableFileName: string = 'cli.js';
+  // const cliRunnableFileName: string = 'cli.js';
   const cliCommandName: string = 'node-skeleton';
 
   // @ts-ignore
@@ -43,12 +43,12 @@ function initializeCommands(): void {
     .help('help')
     .alias('help', 'h')
     .epilog(`Package license ${pacakgeLicense}`)
-    .parse('', (_err: any, _argv: any, output: any) => {
+    /* .parse('', (_err: any, _argv: any, output: any) => {
       if (output) {
         const result: string = output.replace(cliRunnableFileName, cliCommandName);
         console.log(result);
       }
-    })
+    }) */
     .argv;
 }
 

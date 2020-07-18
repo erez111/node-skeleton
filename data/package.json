@@ -1,7 +1,7 @@
 {
   "name": "my-node-project",
   "description": "NodeJS skeleton project. Contains basic packages and configuration for our ideal initial node skeleton",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "main": "build/src/server.js",
   "scripts": {
     "start": "node .",
