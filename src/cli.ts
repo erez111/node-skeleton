@@ -2,12 +2,12 @@
 
 import * as yargs from 'yargs';
 // @ts-ignore
-import * as appRoot from 'app-root-path';
-// @ts-ignore
 import * as path from 'path';
 // @ts-ignore
 import fse from 'fs-extra';
 import { name as packageName, license as pacakgeLicense } from '../package.json';
+// @ts-ignore
+const { exec } = require('child_process');
 
 const featuresList: string[] = ['all', 'basic'];
 const featuresListDetailed: string[] = ['all (basic + docker support including Dockerfile, docker-compose)', 'basic'];
@@ -53,11 +53,11 @@ async function generateProject(): Promise<void> {
     switch (features) {
       case 'all':
         console.log('Project is generating...');
-        HandlesFeatureAll('data/', `${packageName}-generated`);
+        HandlesFeatureAll('build/data/', `${packageName}-generated`);
         break;
       case 'basic':
         console.log('Project is generating...');
-        HandlesFeatureBasic('data/', `${packageName}-generated`);
+        HandlesFeatureBasic('build/data/', `${packageName}-generated`);
         break;
       default:
         console.log(`Please enter a valid --features value (${featuresList.join(' or ')})`);
@@ -68,8 +68,27 @@ async function generateProject(): Promise<void> {
   }
 }
 
+async function getModulePath(): Promise<string> {
+  // import * as appRoot from 'app-root-path';
+  // path.normalize(appRoot.path)
+
+  return new Promise((resolve: any, reject: any) => {
+    // @ts-ignore
+    exec(`npm ls -g ${packageName} --parseable`, (err: any, stdout: string, stderr: any) => {
+      if (!err) {
+        resolve(stdout.trim()); // -> /Users/me/my-project/node_modules/my-dep
+        return;
+      }
+      const errMessage: string = `Can't find global ${packageName} package path. `
+        + `Verify you've an updated ${packageName} version installed globally (npm i -g ${packageName})`;
+      // console.log(errMessage);
+      reject(errMessage);
+    });
+  });
+}
+
 async function HandlesFeatureBasic(srcFolder: string, targetFolder: string): Promise<void> {
-  const normalizedAppRootPath: string = path.normalize(appRoot.path);
+  const normalizedAppRootPath: string = await getModulePath();
   const srcfiles1: string = srcFolder;
   const copyFromAbsolutePath1: string = `${normalizedAppRootPath}${path.sep}${path.normalize(srcfiles1)}`;
   const targetfiles: string = path.normalize(`${targetFolder}/`);
@@ -82,7 +101,7 @@ async function HandlesFeatureAll(srcFolder: string, targetFolder: string): Promi
   // const workingDir: string = process.cwd();
 
   // console.log('workingDir', workingDir);
-  const normalizedAppRootPath: string = path.normalize(appRoot.path);
+  const normalizedAppRootPath: string = await getModulePath();
   const srcfiles1: string = `${srcFolder}.dockerignore`;
   const copyFromAbsolutePath1: string = `${normalizedAppRootPath}${path.sep}${path.normalize(srcfiles1)}`;
   const srcfiles2: string = `${srcFolder}/Dockerfile`;

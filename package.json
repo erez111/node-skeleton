@@ -1,12 +1,13 @@
 {
   "name": "@erez111/node-skeleton",
   "description": "NodeJS skeleton project. Contains basic packages and configuration for our ideal initial node skeleton. Just easily run node-skeleton cli",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "main": "build/src/cli.js",
   "scripts": {
     "build": "tsc",
     "dev": "concurrently \"nodemon\" \"nodemon",
-    "prepublish": "tsc"
+    "copyFiles": "copyfiles -e data/node_modules -e data/.idea -e data/.npmrc -a data/* build/",
+    "prepublish": "tsc && npm run copyFiles"
   },
   "author": "Erez Narotzki",
   "license": "MIT",
@@ -21,6 +22,7 @@
     "@typescript-eslint/eslint-plugin": "^3.6.0",
     "@typescript-eslint/parser": "^3.6.0",
     "concurrently": "^5.2.0",
+    "copyfiles": "^2.3.0",
     "eslint": "^7.4.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
