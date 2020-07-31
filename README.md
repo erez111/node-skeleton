@@ -15,8 +15,9 @@ Find advanced features, collect relevant npm packages into this package, configu
 - Swagger with OpenAPI Specification 3.0 already set
 - Automatic swagger validations- Error 400 swagger validations enforcement through
 - Set API via controller.ts files- configure new APIS by only adding new typescript function or create new typescript file (no hardcore .yml, .json updates are needed)
-- Decorators support for OpenAPI within typescript  
-- Support of advanced dependency injection (DI) among all project including for controller 
+- Annotations support for OpenAPI within typescript
+- Support of advanced dependency injection (DI) among all project including for controller
+- Logging support enabling control multiple appenders and log levels 
 - Eslint (all relevant settings are already in)
 - Support Dockerfile supporting multi-stages low signature build
 - docker-compose file for both build and running project  

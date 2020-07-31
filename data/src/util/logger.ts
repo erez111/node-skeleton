@@ -12,13 +12,13 @@ export class Logger {
 
   private initialize() {
     this.logger = winston.createLogger({
-      level: 'info',
+      level: 'debug',
       format: winston.format.json(),
       defaultMeta: { service: 'default' },
       transports: [
         //
         // - Write all logs with level `error` and below to `error.log`
-        // - Write all logs with level `info` and below to `combined.log`
+        // - Write all logs with level `debug` and below to `combined.log`
         //
         // new winston.transports.File({ filename: 'error.log', level: 'error' }),
         // new winston.transports.File({ filename: 'combined.log' }),
@@ -40,10 +40,10 @@ export class Logger {
   }
 
   public log(level: string, message: any): void {
-    this.logger.log({
+    /* this.logger.log({
       level: level,
       message: message,
-    });
-    this.logger.info(message);
+    }); */
+    this.logger(level, message);
   }
 }
