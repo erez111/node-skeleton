@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
       args:
         APP_NODEJS_VER: 14.5.0
-    image: example-project
+    image: example-project:0.0.1
     container_name: example-project
     ports:
       - "3100:3100"

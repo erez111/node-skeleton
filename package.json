@@ -1,13 +1,14 @@
 {
   "name": "@erez111/node-skeleton",
   "description": "NodeJS skeleton project. Contains basic packages and configuration for our ideal initial node skeleton. Just easily run node-skeleton cli",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "main": "build/src/cli.js",
   "scripts": {
     "build": "tsc",
     "dev": "concurrently \"nodemon\" \"nodemon",
     "copyFiles": "copyfiles -e \"data/node_modules\" -e \"data/.idea\" -e \"data/.npmrc\" -a \"./data/**/*\" \"./build/\"",
-    "prepublish": "tsc && npm run copyFiles"
+    "prepublish": "tsc && npm run copyFiles",
+    "publish": "npm publish --access public"
   },
   "author": "Erez Narotzki",
   "license": "MIT",

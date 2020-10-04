@@ -13,7 +13,12 @@ export class Logger {
   private initialize() {
     this.logger = winston.createLogger({
       level: 'debug',
-      format: winston.format.json(),
+      // format: winston.format.json(),
+      format: winston.format.combine(
+        winston.format.colorize(),
+        // winston.format.label({ label: 'right now!' }),
+        winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss.SSS ZZ' }),
+      ),
       defaultMeta: { service: 'default' },
       transports: [
         //
@@ -44,6 +49,6 @@ export class Logger {
       level: level,
       message: message,
     }); */
-    this.logger(level, message);
+    this.logger.log(level, message);
   }
 }
