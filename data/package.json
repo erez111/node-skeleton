@@ -1,7 +1,7 @@
 {
   "name": "my-node-project",
   "description": "NodeJS skeleton project. Contains basic packages and configuration for our ideal initial node skeleton",
-  "version": "0.1.8",
+  "version": "0.2.1",
   "main": "build/src/server.js",
   "scripts": {
     "start": "node .",
@@ -16,6 +16,7 @@
     "express": "^4.17.1",
     "inversify": "^5.0.1",
     "inversify-binding-decorators": "^4.0.0",
+    "moment": "^2.29.1",
     "reflect-metadata": "^0.1.13",
     "swagger-ui-express": "^4.1.4",
     "tsoa": "^3.2.1",

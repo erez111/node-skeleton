@@ -1,7 +1,7 @@
 node_modules/
-.idea/
+.idea
+.vscode
 /build
-/data
 .DS_Store
 /npm-debug.log*
 .npmrc
