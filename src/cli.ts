@@ -104,8 +104,15 @@ async function HandlesFeatureBasic(srcFolder: string, targetFolder: string): Pro
   const normalizedAppRootPath: string = await getModulePath();
   const srcfiles1: string = srcFolder;
   const copyFromAbsolutePath1: string = `${normalizedAppRootPath}${path.sep}${path.normalize(srcfiles1)}`;
+
+  // Need to copy .npmignore file, otherwise, it doesn't copied
+  const srcfiles2: string = `${srcFolder}/.npmignore`;
+  const copyFromAbsolutePath2: string = `${normalizedAppRootPath}${path.sep}${path.normalize(srcfiles2)}`;
+  // Need to copy .gitignore file, otherwise, it doesn't copied
+  const srcfiles3: string = `${srcFolder}/.gitignore`;
+  const copyFromAbsolutePath3: string = `${normalizedAppRootPath}${path.sep}${path.normalize(srcfiles3)}`;
   const targetfiles: string = path.normalize(`${targetFolder}/`);
-  await copyFilesandFolders([copyFromAbsolutePath1], targetfiles, true);
+  await copyFilesandFolders([copyFromAbsolutePath1, copyFromAbsolutePath2, copyFromAbsolutePath3], targetfiles, true);
 }
 
 async function HandlesFeatureAll(srcFolder: string, targetFolder: string): Promise<void> {
