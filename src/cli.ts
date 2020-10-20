@@ -85,9 +85,17 @@ async function getModulePath(): Promise<string> {
   // import * as appRoot from 'app-root-path';
   // path.normalize(appRoot.path)
 
+  // @ts-ignore
+  const { getInstalledPathSync } = require('get-installed-path');
+  const npmPath = getInstalledPathSync('npm');
+  console.log('npmPath', npmPath);
+
   return new Promise((resolve: any, reject: any) => {
     // @ts-ignore
     exec(`npm ls -g ${packageName} --parseable`, (err: any, stdout: string, stderr: any) => {
+
+      console.log('cli', stdout); //@todo -remove!
+
       if (!err) {
         resolve(stdout.trim()); // -> /Users/me/my-project/node_modules/my-dep
         return;
