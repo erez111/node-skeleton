@@ -4,6 +4,8 @@ import swaggerUi from 'swagger-ui-express';
 import bodyParser from 'body-parser';
 import { ValidateError } from 'tsoa';
 import { Config } from './config/config';
+import { Container } from 'inversify';
+import { Logger } from './util/logger';
 import { RegisterRoutes } from '../build/routes';
 
 export const app = express();
@@ -29,6 +31,10 @@ app.use((_req, res: ExResponse) => {
   });
 });
 
+// Resolve an instance via IOC mechanism
+const container = new Container();
+const logger = container.resolve<Logger>(Logger);
+
 // Handling Validation Errors
 app.use((
   err: unknown,
@@ -38,14 +44,16 @@ app.use((
   // eslint-disable-next-line consistent-return
 ): ExResponse | void => {
   if (err instanceof ValidateError) {
-    console.warn(`Caught Validation Error for ${req.path}:`, err.fields);
+    logger.log('warn', `Caught Validation Error for ${req.path}:`);
+    logger.log('warn', err.fields);
     return res.status(400).json({
       message: 'Validation Failed',
       details: err?.fields,
     });
   }
   if (err instanceof Error) {
-    console.warn(`Caught Internal Server Error for ${req.path}:`, err);
+    logger.log('error', `Caught Internal Server Error for ${req.path}:`);
+    logger.log('error', err);
     return res.status(500).json({
       message: 'Internal Server Error',
     });
