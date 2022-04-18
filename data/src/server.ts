@@ -1,6 +1,6 @@
 // src/server.ts
-import { Config } from './config/config';
 import { Container } from 'inversify';
+import { Config } from './config/config';
 import { Logger } from './util/logger';
 import { name as packageName } from '../package.json';
 import { app } from './app';

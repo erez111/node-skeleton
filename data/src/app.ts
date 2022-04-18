@@ -3,10 +3,10 @@ import express, { Response as ExResponse, Request as ExRequest, NextFunction as 
 import swaggerUi from 'swagger-ui-express';
 import bodyParser from 'body-parser';
 import { ValidateError } from 'tsoa';
-import { Config } from './config/config';
 import { Container } from 'inversify';
+import { Config } from './config/config';
 import { Logger } from './util/logger';
-import { RegisterRoutes } from '../build/routes';
+import { RegisterRoutes } from '../dist/routes';
 
 export const app = express();
 
@@ -19,7 +19,7 @@ app.use(
 app.use(bodyParser.json());
 
 app.use(`/${Config.swaggerPath}`, swaggerUi.serve, async (_req: ExRequest, res: ExResponse) => res.send(
-  swaggerUi.generateHTML(await import('../build/swagger.json')),
+  swaggerUi.generateHTML(await import('../dist/swagger.json')),
 ));
 
 RegisterRoutes(app);

@@ -5,7 +5,7 @@ import * as yargs from 'yargs';
 import * as path from 'path';
 // @ts-ignore
 import fse from 'fs-extra';
-import { name as packageName, license as pacakgeLicense } from '../package.json';
+import { name as packageName, license as packageLicense } from '../package.json';
 // @ts-ignore
 const { exec } = require('child_process');
 
@@ -42,7 +42,7 @@ function initializeCommands(): void {
     .example(`${cliCommandName} generate --features all`, 'Generates full node skeleton project for you') // $0
     .help('help')
     .alias('help', 'h')
-    .epilog(`Package license ${pacakgeLicense}`)
+    .epilog(`Package license ${packageLicense}`)
     /* .parse('', (_err: any, _argv: any, output: any) => {
       if (output) {
         const result: string = output.replace(cliRunnableFileName, cliCommandName);

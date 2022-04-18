@@ -1,5 +1,6 @@
 import * as winston from 'winston';
 import moment from 'moment';
+import { name as serviceName } from '../../package.json';
 import { Config } from '../config/config';
 import { provideSingleton } from './provideSingleton';
 import { TypeLoggerLevels } from './logger-levels';
@@ -22,7 +23,7 @@ export class Logger {
         // winston.format.label({ label: 'right now!' }),
         winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss.SSS ZZ' }),
       ), */
-      defaultMeta: { service: 'default' },
+      defaultMeta: { service: serviceName },
       transports: [
         // To write always to console, enable the following line and unmark next block, which writes to console
         // new (winston.transports.Console)(),
@@ -47,7 +48,9 @@ export class Logger {
           winston.format.simple(),
         ),
       }));
-    }
+    } else {
+	  this.logger.add(new winston.transports.Console({}));
+	}
   }
 
   public log(level: TypeLoggerLevels, message: Object | string): void {

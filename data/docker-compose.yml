@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        APP_NODEJS_VER: 14.5.0
+        NODEJS_DOCKER_VER: 17.7.1-alpine3.15
     image: example-project:0.0.1
     container_name: example-project
     ports:

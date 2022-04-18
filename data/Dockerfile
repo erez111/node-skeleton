@@ -1,7 +1,7 @@
 ARG APP_NODEJS_VER
 
 # Docker Builder
-FROM node:$APP_NODEJS_VER-alpine AS builder
+FROM node:$NODEJS_DOCKER_VER AS builder
 RUN mkdir -p /usr/app
 COPY ./ /usr/app
 WORKDIR /usr/app
@@ -12,7 +12,7 @@ RUN npm install \
 #  Docker Target
 FROM node:$APP_NODEJS_VER-alpine
 RUN mkdir -p /usr/app
-COPY --from=builder /usr/app/build /usr/app/build
+COPY --from=builder /usr/app/dist /usr/app/dist
 COPY --from=builder /usr/app/package.json /usr/app/package.json
 COPY --from=builder /usr/app/node_modules /usr/app/node_modules
 WORKDIR /usr/app
