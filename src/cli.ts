@@ -1,5 +1,6 @@
 #! /usr/bin/env node
 
+// @ts-ignore
 import * as yargs from 'yargs';
 // @ts-ignore
 import * as path from 'path';
